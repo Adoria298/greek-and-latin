@@ -17,7 +17,7 @@ def get_title(string):
         if needs_title in ("Y", "N"):
             break
     if needs_title == "Y":
-        title = input("Please enter it's title: \n")
+        title = input("Please enter its title: \n")
     else: # has to be N
         title = ""
     return title
@@ -40,7 +40,7 @@ for para in soup.find_all("p"):
                 needs_span = input("Does this text need a span tag [Y/N]? ").upper()
                 if needs_span in ("Y", "N"):
                     break
-            if needs_span == "Y":Y
+            if needs_span == "Y":
                 new_spans = []
                 if needs_splitting == "Y":
                     for word in child.string.split(" "):
@@ -48,5 +48,7 @@ for para in soup.find_all("p"):
                         new_span["title"] = get_title(word)
                         new_span.string = word
                         new_spans.append(new_span)
-                for new_span in new_spans: child.insert_after(new_span)
-        child.decompose() # it's been replaced, it's not needed anymore
+                for new_span in new_spans[::-1]: child.insert_after(new_span)
+        child.extract() # it's been replaced, it's not needed anymore
+
+print(soup.prettify())
