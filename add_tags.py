@@ -25,7 +25,7 @@ for para in soup.find_all("p"):
                 child["title"] = get_title(child.string)
         elif child.name == None:
             print(f"Text: {child.string}")
-            if child.string in (" ", ".", ","): # avoid punctuation or spaces
+            if child.string in (" ", ". ", ", "): # avoid punctuation or spaces
                 print("I don't think this needs splitting or a span tag!")
                 continue
             while True:
