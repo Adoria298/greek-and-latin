@@ -12,14 +12,7 @@ def get_title(string):
     Returns a string for the title.
     """
     print("Text:", string)
-    while True:
-        needs_title = input("Does this text need a title [Y/N]? ").upper()
-        if needs_title in ("Y", "N"):
-            break
-    if needs_title == "Y":
-        title = input("Please enter its title: \n")
-    else: # has to be N
-        title = ""
+    title = input("Please enter its title (press enter to ignore): \n")
     return title
 
 # add spans and titles to words without them
@@ -55,3 +48,17 @@ for para in soup.find_all("p"):
                 child.extract() # it's been replaced, it's not needed anymore
 
 print(soup.prettify())
+
+# write code 
+while True:
+    needs_writing = input("Should I write this to a file [Y/N]? ").upper()
+    if needs_writing in ("Y", "N"):
+        break
+if needs_writing == "Y":
+    with open("docs/the_ethiopians_ext.html", "w", encoding="utf-8") as f:
+        f.write(str(soup))
+    print("Succesfully written!") # if we haven't got any errors, it was successful.
+else:
+    print("I won't write it then.")
+
+input("Press enter to exit. ")
