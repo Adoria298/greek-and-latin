@@ -32,8 +32,11 @@ for para in soup.find_all("p"):
                 child["title"] = get_title(child.string)
         elif child.name == None:
             print(f"Text: {child.string}")
+            if child.string in (" ", ".", ","): # avoid punctuation or spaces
+                print("I don't think this needs splitting or a span tag!")
+                continue
             while True:
-                needs_splitting = input("Does this text need splitting first [Y/N]?").upper()
+                needs_splitting = input("Does this text need splitting first [Y/N]? ").upper()
                 if needs_splitting in ("Y", "N"):
                     break
             while True:
@@ -49,6 +52,6 @@ for para in soup.find_all("p"):
                         new_span.string = word
                         new_spans.append(new_span)
                 for new_span in new_spans[::-1]: child.insert_after(new_span)
-        child.extract() # it's been replaced, it's not needed anymore
+                child.extract() # it's been replaced, it's not needed anymore
 
 print(soup.prettify())
