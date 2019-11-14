@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup, NavigableString
 from pprint import pprint
 
+print("Opening docs/the_ethiopians.html")
 with open("docs/the_ethiopians.html", mode="r", encoding="utf-8") as f:
 	soup = BeautifulSoup(f.read(), "html.parser")
 
@@ -12,8 +13,11 @@ def get_title(string):
     Returns a string for the title.
     """
     print("Text:", string)
-    title = input("Please enter its title (press enter to ignore): \n")
+    title = input("Please enter its title (press enter to ignore): \n ")
     return title
+
+print("Reading docs/the_ethiopians.html")
+print("Press Ctrl+C to end the loop and save your work. Note work in the current paragraph will not be saved, so ensure that you are at the end of the paragraph.")
 
 try: 
     # add spans and titles to words without them
