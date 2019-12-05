@@ -1,10 +1,22 @@
+# external imports
 from bs4 import BeautifulSoup, NavigableString
-from pprint import pprint
 
-print("Opening docs/the_ethiopians.html")
-with open("docs/the_ethiopians.html", mode="r", encoding="utf-8") as f:
+# stdlib imports
+from pprint import pprint
+from pathlib import Path
+import sys
+
+# open file - default is docs/the_ethiopians.html
+path = Path(input("Please input the document you'd like to be opened (): "))
+if not path.exists() or not path.is_file() or not "htm" in path.suffix: # must be an existing HTML file.
+    print("The file given does not exist. Using docs/the_ethiopians.html instead.")
+    path = Path("docs/the_ethiopians.html")
+print(f"Opening {path.name}")
+## actual reading code
+with path.open(mode="r", encoding="utf-8") as f:
 	soup = BeautifulSoup(f.read(), "html.parser")
 
+# function definitions
 def get_title(string):
     """
     Finds the title for the string, by asking the user.
@@ -16,9 +28,10 @@ def get_title(string):
     title = input("Please enter its title (press enter to ignore): \n ")
     return title
 
-print("Reading docs/the_ethiopians.html")
+print("Reading docs/the_ethiopians.html") # not true, but good enough
 print("Press Ctrl+C to end the loop and save your work. Note work in the current paragraph will not be saved, so ensure that you are at the end of the paragraph.")
 
+# main loop - try/except so the loop can be easily broken
 try: 
     # add spans and titles to words without them
     for para in soup.find_all("p"):
@@ -66,8 +79,12 @@ finally:
         if needs_writing in ("Y", "N"):
             break
     if needs_writing == "Y":
-        with open("docs/the_ethiopians_ext.html", "w", encoding="utf-8") as f:
-            f.write(str(soup))
+        try:
+            with path.open("w", encoding="utf-8") as f:
+                f.write(str(soup))
+        except Exception as e:
+            print("File unsuccessfuly written! Sorry!")
+            print(e)
         print("Succesfully written!") # if we haven't got any errors, it was successful.
     else:
         print("I won't write it then.")
