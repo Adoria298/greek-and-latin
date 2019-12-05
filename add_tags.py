@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 # open file - default is docs/the_ethiopians.html
-path = Path(input("Please input the document you'd like to be opened (): "))
+path = Path(input("Please input the document you'd like to be opened: "))
 if not path.exists() or not path.is_file() or not "htm" in path.suffix: # must be an existing HTML file.
     print("The file given does not exist. Using docs/the_ethiopians.html instead.")
     path = Path("docs/the_ethiopians.html")
@@ -28,7 +28,7 @@ def get_title(string):
     title = input("Please enter its title (press enter to ignore): \n ")
     return title
 
-print("Reading docs/the_ethiopians.html") # not true, but good enough
+print(f"Reading {path.name}") # not true, but good enough
 print("Press Ctrl+C to end the loop and save your work. Note work in the current paragraph will not be saved, so ensure that you are at the end of the paragraph.")
 
 # main loop - try/except so the loop can be easily broken
