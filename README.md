@@ -21,6 +21,6 @@ The ultimate aim is to make all the texts stored here compatible with the Perseu
 
 ### `add_tags.py`
 
-- used to add properly formed span tags, as required by `analyis.py` to paragraphs of text.
+- used to add properly formed span tags, as required by `analyis.py`, to paragraphs of text.
 - can be used with any HTML file.
 - writes directly to the original file.
