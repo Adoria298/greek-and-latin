@@ -1,12 +1,14 @@
 # greek-and-latin
 
-Github Pages for Farnell & Goff's Adaptation of Herodotus, specifically the OCR GCSE set texts for the June 2020 series of exams. These do not exist anywhere I can find on the web, so they exist here. 
+## Overview
+
+Github Pages for Farnell & Goff's adaptation of Herodotus, specifically the OCR GCSE set texts for the June 2020 series of exams. These do not exist anywhere I can find on the web, so they exist here. 
 See [adoria298.github.io/greek-and-latin](https://adoria298.github.io/greek-and-latin) for rendered text.
 All texts are stored in the `docs` folder and analysis tools are stored in the root folder.
 
 ## Analysis Tools
 
-These tools are command line tools designed to allow machines to analyse the text easily. They work based on span tags around each word in every paragraph, such as `<span title="βουλευομαι - to plan">ἐβουλευσατο</span>` - the title element is used so that the text is provided for the human reader. They require [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/), which can be installed with `pip install beautifulsoup4`.
+These tools are command line tools designed to allow machines to analyse the text easily. They work based on span tags around each word in every paragraph, such as `<span title="βουλευομαι - to plan">ἐβουλευσατο</span>` - the title element is used so that the text is provided for the human reader. They require [Python 3.6+](https://www.python.org), so that f-strings can be used and [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/), which can be installed with `pip install beautifulsoup4`.
 
 The ultimate aim is to make all the texts stored here compatible with the Perseus Digital Library, so that its myriad of wonderful tools can all be used. 
 
