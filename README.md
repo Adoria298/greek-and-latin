@@ -2,7 +2,7 @@
 
 ## Overview
 
-Github Pages for Farnell & Goff's adaptation of Herodotus, specifically the OCR GCSE set texts for the June 2020 series of exams. These do not exist anywhere I can find on the web, so they exist here. 
+Resources for Classical Greek and Latin, aimed at the OCR GCSE June 2020 exams, including the Greek set text from Farnell & Goff's adaptation of Herodotus, whiche do not exist anywhere I can find on the web, apart from here. 
 See [adoria298.github.io/greek-and-latin](https://adoria298.github.io/greek-and-latin) for rendered text.
 All texts are stored in the `docs` folder and analysis tools are stored in the root folder.
 
