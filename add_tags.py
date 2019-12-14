@@ -38,7 +38,7 @@ try:
         for child in para.children:
             if child.name == "span":
                 if "title" in child.attrs:
-                    print(f"{child.string} has a title!")
+                    print(f"'{child.string}' has a title!")
                 else:
                     child["title"] = get_title(child.string)
             elif child.name == None:
