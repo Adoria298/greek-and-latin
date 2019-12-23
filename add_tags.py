@@ -51,7 +51,7 @@ try:
                     if needs_splitting in ("Y", "N"):
                         break
                 while True:
-                    needs_span = input("Does this text need a span tag [Y/N]? ").upper()
+                    needs_span = input("Does this same text need a span tag [Y/N]? ").upper()
                     if needs_span in ("Y", "N"):
                         break
                 if needs_span == "Y":
