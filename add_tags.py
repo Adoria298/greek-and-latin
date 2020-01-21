@@ -28,7 +28,7 @@ def get_title(string):
     title = input("Please enter its title (press enter to ignore): \n ")
     return title
 
-print(f"Reading {path.name}") # not true, but good enough
+print(f"Reading {path.name}") # not true, but gives an impression of progress
 print("Press Ctrl+C to end the loop and save your work. Note work in the current paragraph will not be saved, so ensure that you are at the end of the paragraph.")
 
 # main loop - try/except so the loop can be easily broken
