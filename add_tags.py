@@ -82,10 +82,10 @@ finally:
         try:
             with path.open("w", encoding="utf-8") as f:
                 f.write(str(soup))
+            print("Succesfully written!") # file closed with no errors, so it was successful.
         except Exception as e:
             print("File unsuccessfuly written! Sorry!")
             print(e)
-        print("Succesfully written!") # if we haven't got any errors, it was successful.
     else:
         print("I won't write it then.")
 
