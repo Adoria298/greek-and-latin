@@ -2,7 +2,7 @@
 
 ## Overview
 
-Resources for Classical Greek and Latin, aimed at the OCR GCSE June 2020 exams, including the Greek set text from Farnell & Goff's adaptation of Herodotus, which do not exist anywhere I can find on the web, apart from here. Includes resources made by other people from elsewhere on the web.
+Resources for Classical Greek and Latin, aimed at the OCR GCSE June 2020 exams, including the Greek set text from Farnell & Goff's adaptation of Herodotus, which does not exist anywhere I can find on the web, apart from here. Includes resources made by other people from elsewhere on the web.
 See [adoria298.github.io/greek-and-latin](https://adoria298.github.io/greek-and-latin) for rendered text.
 All texts are stored in the `docs` folder and analysis tools are stored in the root folder.
 
