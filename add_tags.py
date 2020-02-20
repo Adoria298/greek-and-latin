@@ -9,8 +9,8 @@ import sys
 # open file - default is docs/the_ethiopians.html
 path = Path(input("Please input the document you'd like to be opened: "))
 if not path.exists() or not path.is_file() or not "htm" in path.suffix: # must be an existing HTML file.
-    print("The file given does not exist. Using docs/the_ethiopians.html instead.")
-    path = Path("docs/the_ethiopians.html")
+    print("The file given does not exist. Using docs/greek/set_texts/the_ethiopians.html instead.")
+    path = Path("docs/greek/set_texts/the_ethiopians.html")
 print(f"Opening {path.name}")
 ## actual reading code
 with path.open(mode="r", encoding="utf-8") as f:

@@ -17,7 +17,7 @@ The ultimate aim is to make all the texts stored here compatible with the Perseu
 - counts words and their many forms.
 - could be used to prioritize flashcards, etc.
 - results of which will eventually be linked into the main text.
-- only works with `docs/the_ethiopians.html`
+- only works with `docs/greek/set_texts/the_ethiopians.html`
 
 ### `add_tags.py`
 

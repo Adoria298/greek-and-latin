@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from pprint import pprint
 
-with open("docs/the_ethiopians.html", mode="r", encoding="utf-8") as f:
+with open("docs/greek/set_texts/the_ethiopians.html", mode="r", encoding="utf-8") as f:
 	soup = BeautifulSoup(f.read(), "html.parser")
 
 # count words used
