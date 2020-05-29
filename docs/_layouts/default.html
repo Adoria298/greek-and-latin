@@ -41,7 +41,9 @@
         
         <script>
           function printText () {
-            document.getElementById("main_text").contentWindow.print()
+            var printView = window.open("", "PrintView", "width=200,height=100");
+            printView.document.write("<h1>{{ page.title }}</h1>{{ page.content }}");
+            printView.print()
           }
         </script>
         <p class="view" onClick="printText()">Print</p>
