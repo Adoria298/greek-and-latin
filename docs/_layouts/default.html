@@ -38,14 +38,15 @@
           <li><a href="{{ site.github.repository_url }}">View On <strong>GitHub</strong></a></li>
         </ul>
         {% endif %}
-
-        <details>
-          <summary>Print-friendly view</summary>
-          <h1>{{ page.title }}</h1>
-          {{ page.content }}
-        </details>
+        
+        <script>
+          function printText () {
+            document.getElementById("main_text").contentWindow.print()
+          }
+        </script>
+        <p class="view" onClick="printText()">Print</p>
       </header>
-      <section>
+      <section id="main_text">
 
       <h1>{{ page.title }}</h1>  
 
