@@ -33,7 +33,7 @@ title: Home
 <ul>
 {% for page in site.pages %}
   {% if page.tags contains 'unseen' or page.tags contains 'exercise' %}
-    <li><a href="{{ site.url + page.url }}">{{ page.title }}</a></li>
+    <li><a href="{{ site.url | join page.url }}">{{ page.title }}</a></li>
   {% endif %}
 {% endfor %}
 </ul>
