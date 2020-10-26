@@ -19,18 +19,15 @@ title: Home
   {% for page in site.pages %}
   {% if page.tags contains 'unseen' or page.tags contains 'exercise' %}
     {% if page.tags contains 'Latin' %}
-      {% if site.pages[forloop.index0-1].tags == "Greek" %}
+      {% if site.pages[forloop.index0-1].tags contains "Greek" %}
         <tr><td><a href="{{ page.url | relative_url }}">{{ page.title }}</a></td>
-      {% else %}
-          {% capture skipped_latin %}
-          {{ page.url | append: ", " | append: page.title | split: ", " }}
-          {% endcapture %}
       {% endif %}
     {% elsif page.tags contains 'Greek' %}
-      {% if skipped_latin %}
-          <tr><td><a href="{{ skipped_latin[0] | relative_url }}">{{ skipped_latin[1] }}</a></td>
+      {% if site.pages[forloop.index0-1].tags contains "Greek" %}
+          {% assign skipped_latin = site.pages[forloop.index0-1] %}
+          <tr><td><a href="{{ skipped_latin.url | relative_url }}">{{ skipped_latin.title }}</a></td>
           {% assign skipped_latin = nil %}
-        {% endif %}
+      {% endif %}
       <td><a href="{{ page.url | relative_url }}">{{ page.title }}</a></td></tr>
     {% endif %}
   {% endif %}
