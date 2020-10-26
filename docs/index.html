@@ -16,27 +16,6 @@ title: Home
 <p>Practice Translation Exercises:</p>
 <table>
   <tr><th>Latin</th><th>Classical Greek</th></tr>
-  {% for page in site.pages %}
-  {% if page.tags contains 'unseen' or page.tags contains 'exercise' %}
-    {% if page.tags contains 'Latin' %}
-      {% if site.pages[forloop.index0-1].tags contains "Greek" %}
-        <tr><td><a href="{{ page.url | relative_url }}">{{ page.title }}</a></td>
-      {% endif %}
-    {% elsif page.tags contains 'Greek' %}
-      {% if site.pages[forloop.index0-1].tags contains "Greek" %}
-          {% assign skipped_latin = site.pages[forloop.index0-1] %}
-          <tr><td><a href="{{ skipped_latin.url | relative_url }}">{{ skipped_latin.title }}</a></td>
-          {% assign skipped_latin = nil %}
-      {% endif %}
-      <td><a href="{{ page.url | relative_url }}">{{ page.title }}</a></td></tr>
-    {% endif %}
-  {% endif %}
-{% endfor %}
-</table>
-
-<!--Attempt #2-->
-<table>
-  <tr><th>Latin</th><th>Classical Greek</th></tr>
   {% assign latins = nil %}
   {% assign greeks = nil %}
   {% for page in site.pages %}
@@ -51,13 +30,8 @@ title: Home
   {% assign latins = latins | split: ", " %}
   {% assign greeks = greeks | split: ", " %}
   {% for latin in latins %}
-    {% capture cur_latin %}
-      {% cycle "latins": latins %}
-    {% endcapture %}
-    {% capture cur_greek %}
-      {% cycle "greeks": greeks %}
-    {% endcapture %}
-    {% assign cur_latin = cur_latin | split: "---" %}
+    {% assign cur_greek = greeks[forloop.index0] %}
+    {% assign cur_latin = latin | split: "---" %}
     {% assign cur_greek = cur_greek | split: "---" %}
     <tr>
       <td><a href="{{ cur_latin[1] | relative_url }}">{{ cur_latin[0] }}</a></td>
