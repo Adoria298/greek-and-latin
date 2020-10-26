@@ -14,13 +14,18 @@ title: Home
 </ul>
 
 <p>Practice Translation Exercises:</p>
-<ul>
+<table>
+  <th>Latin</th><th>Classical Greek</th>
   {% for page in site.pages %}
   {% if page.tags contains 'unseen' or page.tags contains 'exercise' %}
-    <li><a href="{{ page.url | relative_url }}">{{ page.title }}</a></li>
+    {% if page.tags contains 'Latin' %}
+      <tr><td><a href="{{ page.url | relative_url }}">{{ page.title }}</a></td>
+    {% elsif page.tags contains 'Greek' %}
+      <td><a href="{{ page.url | relative_url }}">{{ page.title }}</a></td></tr>
+    {% endif %}
   {% endif %}
 {% endfor %}
-</ul>
+</table>
 
 <h2>Resources Available Elsewhere</h2>
 
