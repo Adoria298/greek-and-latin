@@ -25,8 +25,9 @@ def get_title(string):
     Returns a string for the title.
     """
     print("Text:", string)
-    title = input("Please enter its title (press enter to ignore): \n ")
-    return title
+    lemma = input("Please enter the \"dictionary form\" of this word (press enter to ignore): \n ")
+    defin = input("Please enter the definition of this word (press enter to ignore): \n")
+    return lemma + " - " + defin
 
 print(f"Reading {path.name}") # not true, but gives an impression of progress
 print("Press Ctrl+C to end the loop and save your work. Note work in the current paragraph will not be saved, so ensure that you are at the end of the paragraph.")
