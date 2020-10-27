@@ -51,7 +51,7 @@ class Tagifier:
             soup = BeautifulSoup(f.read(), "html.parser")
         return soup
 
-    def get_title(self, string: str) -> str:
+    def input_title(self, string: str) -> str:
         """
         Finds the title for the string, by asking the user.
         Params:
@@ -86,7 +86,7 @@ class Tagifier:
                         if "title" in child.attrs:
                             print(f"'{child.string}' has a title!")
                         else:
-                            child["title"] = self.get_title(child.string)
+                            child["title"] = self.input_title(child.string)
                     elif child.name == None:
                         print(f"Text: {child.string}")
                         if child.string in (" ", ". ", ", ", "\n", "\t", ""): # avoid punctuation or whitespace
@@ -99,7 +99,7 @@ class Tagifier:
                             if needs_splitting == "Y":
                                 for word in child.string.split(" "):
                                     new_span = self.soup.new_tag("span")
-                                    new_span["title"] = self.get_title(word)
+                                    new_span["title"] = self.input_title(word)
                                     new_span.string = word
                                     new_spans.append(new_span)
                             for new_span in new_spans[::-1]:
