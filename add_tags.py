@@ -17,7 +17,7 @@ with path.open(mode="r", encoding="utf-8") as f:
 	soup = BeautifulSoup(f.read(), "html.parser")
 
 # function definitions
-def get_title(string):
+def get_title(string: str) -> str:
     """
     Finds the title for the string, by asking the user.
     Params:
@@ -28,6 +28,16 @@ def get_title(string):
     lemma = input("Please enter the \"dictionary form\" of this word (press enter to ignore): \n ")
     defin = input("Please enter the definition of this word (press enter to ignore): \n")
     return lemma + " - " + defin
+
+def y_or_n_input(prompt: str) -> str:
+    """
+    Calls input(prompt) until the response is Y or N.
+    Returns Y or N.
+    """
+    ans = ""
+    while not ans in ("Y", "N"):
+        ans = input(prompt).upper()
+    return ans
 
 print(f"Reading {path.name}") # not true, but gives an impression of progress
 print("Press Ctrl+C to end the loop and save your work. Note work in the current paragraph will not be saved, so ensure that you are at the end of the paragraph.")
@@ -44,17 +54,11 @@ try:
                     child["title"] = get_title(child.string)
             elif child.name == None:
                 print(f"Text: {child.string}")
-                if child.string in (" ", ". ", ", "): # avoid punctuation or spaces
+                if child.string in (" ", ". ", ", ", "\n", "\t", ""): # avoid punctuation or whitespace
                     print("I don't think this needs splitting or a span tag!")
                     continue
-                while True:
-                    needs_splitting = input("Does this text need splitting first [Y/N]? ").upper()
-                    if needs_splitting in ("Y", "N"):
-                        break
-                while True:
-                    needs_span = input("Does this same text need a span tag [Y/N]? ").upper()
-                    if needs_span in ("Y", "N"):
-                        break
+                needs_splitting = y_or_n_input("Does this text need splitting first [Y/N]? ")
+                needs_span = y_or_n_input("Does this same text need a span tag [Y/N]? ")
                 if needs_span == "Y":
                     new_spans = []
                     if needs_splitting == "Y":
@@ -75,10 +79,7 @@ finally:
     print(soup.prettify())
 
     # write code 
-    while True:
-        needs_writing = input("Should I write this to a file [Y/N]? ").upper()
-        if needs_writing in ("Y", "N"):
-            break
+    needs_writing = y_or_n_input("Should I write this to a file [Y/N]? ")
     if needs_writing == "Y":
         try:
             with path.open("w", encoding="utf-8") as f:
@@ -86,7 +87,7 @@ finally:
             print("Succesfully written!") # file closed with no errors, so it was successful.
         except Exception as e:
             print("File unsuccessfuly written! Sorry!")
-            print(e)
+            print("Error:", e)
     else:
         print("I won't write it then.")
 
