@@ -4,8 +4,9 @@ layout: default
 <script>
     function printText () {
         var printView = window.open();
-        printView.document.write(`<h1>{{ page.title }}</h1>{{ page.content | escape }}`);
+        printView.document.write(`<h1>{{ page.title }}</h1>{{ page.content }}`);
+        printView.print();
     }
 </script>
-<button class="view" onClick="printText();" type="button">View Simplified Page</button>
+<button class="view" onClick="printText();" type="button">Print Simplified Page</button>
 {{ content }}
