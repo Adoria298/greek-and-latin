@@ -41,14 +41,6 @@
         </ul>
         {% endif %}
         
-        <script>
-          function printText () {
-            var printView = window.open();
-            printView.document.write(`<h1>{{ page.title }}</h1>{{ page.content }}`);
-            printView.print()
-          }
-        </script>
-        <button class="view" onClick="printText()" type="button">Print Simplified Page</button>
       </header>
       <section id="main_text">
 
