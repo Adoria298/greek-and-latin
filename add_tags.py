@@ -7,9 +7,9 @@ from pathlib import Path
 import sys
 
 class Tagifier:
-    def __init__(self):
-        self.path = Path(input("Please input the document you'd like to be opened: "))
-        self.soup = self.get_soup(self.path)
+    def __init__(self, path=""):
+        self.path = self.get_path(path)
+        self.soup = self.get_soup()
         try:
             self.add_tags()
         except Exception as e:
@@ -17,19 +17,37 @@ class Tagifier:
         finally:
             self.save()
 
-    def get_soup(self, path: Path, default_path = Path("docs/greek/set_texts/the_ethiopians.html")) -> BeautifulSoup:
+    def is_valid_path(self, path: str) -> bool:
+        try:
+            test_Path = Path(path)
+        except:
+            return False
+        if test_Path.exists() and test_Path.is_file() and "htm" in test_Path.suffix:
+            return True
+        else:
+            return False
+
+    def get_path(self, path: str = "") -> Path:
         """
-        Checks is path is an existing HTML file - docs/greek/set_texts/
-        the_ethiopians.html if not - and makes a BeautifulSoup out of it, which is 
-        returned.
+        Validates the path provided. If invalid, calls input to get a new path.
+        If that is invalid, uses docs/greek/set_texts/the_ethiopians.html.
+        In all cases, makes self.path a Path object which points to an existing HTML file.
         """
-        # verification code
-        if not path.exists() or not path.is_file() or not "htm" in path.suffix:
-            path = Path(default_path)
-        print(f"Opening {path.name}")
+        if path and self.is_valid_path(path):
+            return Path(path)
+        path = input("Please input the document you'd like to add tags to: ")
+        if not self.is_valid_path(path):
+            path = "docs/greek/set_texts/the_ethiopians.html"
+        return Path(path)
+        
+    def get_soup(self) -> BeautifulSoup:
+        """
+        Makes a BeautifulSoup out of self.path.
+        Returns the soup.
+        """
         # actual reading code
-        print(f"Reading {path.name}") # not true, but gives an impression of progress
-        with path.open(mode="r", encoding="utf-8") as f:
+        print(f"Reading {self.path.name}") # to give an impression of progress
+        with self.path.open(mode="r", encoding="utf-8") as f:
             soup = BeautifulSoup(f.read(), "html.parser")
         return soup
 
