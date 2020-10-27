@@ -9,16 +9,24 @@ words = {}
 # find all spans, count the definition and the declension of each word
 for span in soup.find_all("span"):
 	title = span.get("title")
-	if title in words:
-		words[title]['count'] += 1
-		if span.string in words[title]:
-			words[title][span.string] += 1
-		else:
-			words[title][span.string] = 1
+	if not title == "" or span.string == "":
+		lemma, definition = title.split(" - ")
 	else:
-		words[title] = {
+		lemma = ""
+		definiton = ""
+	if lemma in words:
+		words[lemma]['count'] += 1
+		if not definition in words[lemma]["definitions"]:
+			words[lemma]["definitions"].append(definition)
+		if span.string in words[lemma]:
+			words[lemma][span.string] += 1
+		else:
+			words[lemma][span.string] = 1
+	else:
+		words[lemma] = {
 			"count": 1
 		}
-		words[title][span.string] = 1
+		words[lemma][span.string] = 1
+		words[lemma]["definitions"] = [definition]
 		
 pprint(words)
