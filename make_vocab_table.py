@@ -24,7 +24,6 @@ def make_table_from_dict(dicti):
     table += "</table>"
     return BeautifulSoup(table, "html.parser")
 
-
 if __name__ == "__main__":
     src_path = Path(input("Please input the document you'd like to read. "))
     with src_path.open(mode='r', encoding='utf-8') as src: # trusting the user
@@ -33,8 +32,9 @@ if __name__ == "__main__":
     vocab = get_vocab_items(srcy_soup)
     print("Got the vocab. Let's go!")
 
-    make_table_from_dict(vocab)
+    table_soup = make_table_from_dict(vocab)
 
-#    out_path = Path(input("Where do you want to put the final table? "))
- #   with out_path.open(mode='r', encoding='utf-8') as out: # if we shouldn't trust the user the program crashes
-  #      out_soup = BeautifulSoup(out.read(), "html.parser")
+    # write to end of the filefile
+    out_path = Path(input("Where do you want to put the final table? "))
+    with out_path.open(mode='a', encoding='utf-8') as out: # still trusting the user
+        out.write(str(table_soup))
