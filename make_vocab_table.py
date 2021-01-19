@@ -3,11 +3,14 @@ from bs4 import BeautifulSoup, Tag
 from pathlib import Path
 
 def get_vocab_items(soup):
-    "Takes in a BeautifulSoup and returns a dictionary of word (str): definition (str)"
+    """
+    Takes in a BeautifulSoup and returns a dictionary of word (str): definition (str).
+    There is a known bug where a word that appears multiple times only has its most recent definition.
+    """
     vocab_dict = {}
     for span in soup.find_all("span"):
         word, definition = span.get("title").split(" - ")
-        vocab_dict[word] = definition
+        vocab_dict[word] = definition # TODO: fix bug described in docstring
     return vocab_dict
 
 def make_table_from_dict(dicti):
@@ -26,7 +29,7 @@ def make_table_from_dict(dicti):
 
 if __name__ == "__main__":
     src_path = Path(input("Please input the document you'd like to read. "))
-    with src_path.open(mode='r', encoding='utf-8') as src: # trusting the user
+    with src_path.open(mode='r', encoding='utf-8') as src: # trusting the user - TODO: fix this
         srcy_soup = BeautifulSoup(src.read(), "html.parser") # scry_soup: as in a soup that is saucy
 
     vocab = get_vocab_items(srcy_soup)
