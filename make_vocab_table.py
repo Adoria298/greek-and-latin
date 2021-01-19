@@ -11,15 +11,18 @@ def get_vocab_items(soup):
     return vocab_dict
 
 def make_table_from_dict(dicti):
-    trs = [] # list of table rows (<tr>) to be put in a table
+    """
+    Takes in a dictionary of str:str (like one returned by get_vocab_items and returns an HTML table.
+    The table returned is a tag object.
+    """
+    table = "<table>"
     for word in dicti.keys():
-        word_td = Tag(name="td")
-        word_td.append(word)
-        def_td = Tag(name="td")
-        def_td.append(dicti[word])
-        cur_row = word_td.wrap(Tag(name="tr"))
-        cur_row.append(def_td)
-        print(cur_row)
+        table += "<tr>"
+        table += "<td>" + word + "</td>"
+        table += "<td>" + dicti[word] + "</td>"
+        table += "</tr>"
+    table += "</table>"
+    return BeautifulSoup(table, "html.parser")
 
 
 if __name__ == "__main__":
