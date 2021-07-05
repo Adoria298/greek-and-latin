@@ -38,6 +38,6 @@ if __name__ == "__main__":
     table_soup = make_table_from_dict(vocab)
 
     # write to end of the filefile
-    out_path = Path(input("Where do you want to put the final table? "))
+    out_path = Path(input("In which file do you want to put the final table? "))
     with out_path.open(mode='a', encoding='utf-8') as out: # still trusting the user
         out.write(str(table_soup))
